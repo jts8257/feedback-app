@@ -7,7 +7,7 @@ const FeedBackData = [
     {
         id: 2,
         rating: 2,
-        text : '1'
+        text : '2'
     },
     {
         id: 3,

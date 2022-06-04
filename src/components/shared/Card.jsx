@@ -22,8 +22,11 @@ Card.defaultProps = {
   reverse: false,
 }
 
+// PropTypes.node 는 뭘 의하는거지?
+
 Card.propTypes = {
   children: PropTypes.node.isRequired,
   reverse: PropTypes.bool
 }
+
 export default Card
