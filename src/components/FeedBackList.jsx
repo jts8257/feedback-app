@@ -1,9 +1,11 @@
-import React from 'react'
+import {React, useContext} from 'react'
 import { motion, AnimatePresence } from "framer-motion"
 import FeedbackItem from './FeedbackItem'
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types' // context 로 state 를 관리하면서부터 propType 을 관리할 필요가 없어짐.
+import FeedBackContext from '../context/FeedBackContext'
 
-function FeedBackList({feedBack , handleDelete}) {
+function FeedBackList() {
+  const {feedBack} = useContext(FeedBackContext)
     if (!feedBack || feedBack.length === 0) {
         return <p>No FeedBack Yet</p>
     }
@@ -17,8 +19,7 @@ function FeedBackList({feedBack , handleDelete}) {
           animate={{opacity: 1}}
           exit={{opacity: 0}}
           >
-            <FeedbackItem key = {item.id} item={item} 
-            handleDelete = {(id) => handleDelete(id)}/>
+            <FeedbackItem key = {item.id} item={item} />
             </motion.div>
         ))}
         </AnimatePresence>
@@ -36,14 +37,15 @@ function FeedBackList({feedBack , handleDelete}) {
   // )
 }
 
-FeedBackList.protoTypes = {
-  feedBack: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      text: PropTypes.string.isRequired,
-      rating: PropTypes.number.isRequired,
-    })
-  )
-}
+// context 로 state 를 관리하면서부터 propType 을 관리할 필요가 없어짐.
+// FeedBackList.propTypes = {
+//   feedBack: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       id: PropTypes.number.isRequired,
+//       text: PropTypes.string.isRequired,
+//       rating: PropTypes.number.isRequired,
+//     })
+//   )
+// }
 
 export default FeedBackList

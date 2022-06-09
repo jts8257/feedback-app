@@ -1,15 +1,21 @@
 import React from 'react'
-import {useState} from 'react'
+import {useState, useContext, useEffect} from 'react'
+import FeedBackContext from '../context/FeedBackContext'
 
 function RatingSelect({select}) {
 
     const [selected, setSelected] = useState(10)
+    const { feedBackEdit } = useContext(FeedBackContext)
     
     const handleChange = (e) => {
         setSelected(+e.currentTarget.value)
         select(+e.currentTarget.value)
       }
 
+      // 이렇게 함으로써 edit 하려고 눌렀을때 변화된 rating 이 반영된다.
+    useEffect(() => {
+      setSelected(feedBackEdit.item.rating)
+    }, [feedBackEdit])
   
       return (
         <ul className='rating'>

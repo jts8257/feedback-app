@@ -1,16 +1,28 @@
 import React from 'react'
-import {useState} from 'react'
+import {useState, useContext, useEffect} from 'react'
 import Card from './shared/Card'
 import Button from './shared/Button';
 import RatingSelect from './RatingSelect';
+import FeedBackContext from '../context/FeedBackContext';
 
-
-function FeedBackForm( {handleAdd} ) {
+function FeedBackForm() {
 
     const [text, setText] = useState('');
     const [rating, setRating] = useState(10);
     const [btnDisabled, setBtnDisabled] = useState(true);
     const [message, setMessage] = useState('');
+    const { addFeedBack, feedBackEdit, updateFeedback } = useContext(FeedBackContext)
+    
+    // data fetch 에 활용되기 좋은 기술
+    // [] 부분은 의존성으로, 이 effect 가 어떤 state 의 변화에 발동될지를 본다.
+    // 아래처럼 만들면 처음 로드될때 한번, feedBackEdit state 가 변할때마다 한번 동작한다.
+    useEffect(() => {
+        if(feedBackEdit.edit === true) {
+            setBtnDisabled(false)
+            setText(feedBackEdit.item.text)
+            setRating(feedBackEdit.item.rating)
+        }
+    }, [feedBackEdit])
 
     const handleTextChange = (e) => {
         if(text === '') {
@@ -34,7 +46,11 @@ function FeedBackForm( {handleAdd} ) {
                 rating: rating,
             }
 
-            handleAdd(newFeedback)
+            if(feedBackEdit.edit === true) {
+                updateFeedback(feedBackEdit.item.id, newFeedback)
+            } else {
+                addFeedBack(newFeedback)
+            }
             setText('')
             setRating(10)
         }
