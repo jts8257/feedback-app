@@ -1,6 +1,4 @@
 import { createContext, useEffect, useState } from 'react';
-import FeedBackData from "../data/FeedBackData";
-import {v4 as uuidv4} from 'uuid'
 
 const FeedBackContext = createContext()
 
