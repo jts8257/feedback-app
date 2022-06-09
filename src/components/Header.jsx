@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Route, Routes, NavLink, Link } from 'react-router-dom'
+// import { Route, Routes, NavLink, Link } from 'react-router-dom'
 
 
 // Props 가 뭐 들어올지 알면 이렇게 해도 됨.

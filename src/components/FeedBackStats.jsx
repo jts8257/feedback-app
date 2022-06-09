@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
-import PropTypes from 'prop-types'
-import { FeedBackProvider } from '../context/FeedBackContext';
+// import PropTypes from 'prop-types'
 import FeedBackContext from '../context/FeedBackContext';
 
 

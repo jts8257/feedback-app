@@ -1,7 +1,7 @@
 import {React, useContext} from 'react'
 import { motion, AnimatePresence } from "framer-motion"
 import FeedbackItem from './FeedbackItem'
-import PropTypes from 'prop-types' // context 로 state 를 관리하면서부터 propType 을 관리할 필요가 없어짐.
+// import PropTypes from 'prop-types' // context 로 state 를 관리하면서부터 propType 을 관리할 필요가 없어짐.
 import FeedBackContext from '../context/FeedBackContext'
 
 function FeedBackList() {
